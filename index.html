@@ -1,104 +1,562 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatal_Block</title>
+    <link rel="icon" href="https://img.picui.cn/free/2025/06/08/6844e83ed422a.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary:#000000;
+            --secondary: #000000;
+            --accent: #000000;
+            --light: #919191;
+            --dark: #000000;
+            --text: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: url('https://free.picui.cn/free/2025/06/08/684557d41efcd.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(133, 133, 133, 0.85);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            color: rgb(255, 255, 255);
+            position: relative;
+            overflow: hidden;
+        }
+        <!--网站头版标题-->
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/2cXbduS.png') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+        
+        header h3 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        header h3 a {
+            color: #ffd166;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3 ease;
+        }
+        
+        header h3 a:hover {
+            color: rgb(149, 149, 149);
+            text-decoration: underline;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: rgba(138, 138, 138, 0.92);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3 ease, box-shadow 0.3 ease;
+            border-top: 4px solid var(--accent);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(175, 175, 175, 0.2);
+        }
+        
+        .card h2 {
+            color: var(--accent);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h2 i {
+            color: var(--primary);
+        }
+        
+        .card p {
+            margin-bottom: 15px;
+        }
+        
+        .info-box {
+            background: rgba(142, 142, 142, 0.95);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box p {
+            margin: 8px 0;
+            font-weight: 500;
+        }
+        
+        .server-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .server-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            background: rgba(136, 136, 136, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+        }
+        
+        .server-detail i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgb(132, 132, 132);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3 ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .social-link:hover {
+            background: var(--light);
+            transform: translateX(5px);
+        }
+        
+        .social-link img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+        
+        .social-link .icon-container {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--light);
+        }
+        
+        .banner-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .banner-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .banner-container img:hover {
+            transform: scale(1.02);
+        }
+        
+        .sponsor-section {
+            background: rgba(125, 124, 124, 0.92);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .sponsor-section h2 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .sponsor-qr {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+            border: 10px solid white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .console-guide {
+            background: rgba(132, 132, 132, 0.92);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .console-guide h2 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .console-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .console-icon {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .console-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            counter-reset: step-counter;
+        }
+        
+        .step {
+            background: rgba(146, 146, 146, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            padding-left: 70px;
+            min-height: 120px;
+        }
+        
+        .step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: rgb(255, 255, 255);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .step h3 {
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(151, 151, 151, 0.9);
+            color: rgb(250, 250, 250);
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+        
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgb(255, 255, 255);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3 ease;
+        }
+        
+        .language-toggle:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            header h3 {
+                font-size: 1.1rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .console-icons {
+                gap: 15px;
+            }
+            
+            .console-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
 </head>
-<!--网站适配移动端浏览器大小-->
-
-<h1 style="text-align:center;">Welcome to Fatal_Block!<br>欢迎来到Fatal_Block！</h1>
-<!--网站标题文本，居中对齐-->
-
-<h3 style="text-align:center;">Please vote for our server on <a href="https://minecraftpocket-servers.com/server/131141/">minecraftpocket-servers.com</a>, it's completely free!
-<br>请在<a href="https://minecraftpocket-servers.com/server/131141/">minecraftpocket-servers.com</a>上给我们的服务器投票，它完全免费！</h3>
-<!--为服务器投票的链接-->
-
-<head>
-    <title>Fatal_Block Official Website</title>
-    <link rel="icon" href="https://img.picui.cn/free/2025/06/08/6844e83ed422a.jpg" sizes="16x16">
-</head>
-<!--网站名称和图标-->
-
-<div style="text-align: center;">
-    <img src="https://free.picui.cn/free/2025/06/29/6860a6242f88f.jpg" alt="Baidu Tieba" width="100" height="50">
-    <p><a href="https://tieba.baidu.com/f?kw=fatal_block">Server Tieba</a><br><a href="https://tieba.baidu.com/f?kw=fatal_block">服务器贴吧</a></p>
-</div>
-<!--百度贴吧-->
-	
-<div style="text-align: center;">
-    <p>This is a Minecraft Bedrock Eidition multiplayer survival server with no rules. Created August 26th, 2023.<br>这是一个《Minecraft：基岩版》多人生存服务器，没有任何规则。创建于2023年8月26日。</p>
-
-    <p>Server name: Fatal_Block<br>服务器名称：Fatal_Blcok</p>
-
-    <p>Server address: play.fatalblock.online<br>服务器地址：play.fatalblock.online</p>
-
-    <p>Server port: 31033<br>服务器端口：31033</p>
-
-    <p><img src="https://free.picui.cn/free/2025/06/08/68455ad5a2d2d.jpg" alt="KOOK icon" width="20" height="20">
-        <br><a href="https://kook.vip/zXAY2n">Our official KOOK<br>我们的官方KOOK（推荐中国内地用户加入）</a></p>
-
-    <p><img src="https://free.picui.cn/free/2025/06/08/68455bf218726.jpg" alt="Discord icon" width="20" height="20">
-        <br><a href="https://discord.gg/mXC3SEa9qp">Our official Discord<br>我们的官方Discord（中国内地用户加入时需要科学上网）</a></p>
-
-    <p>The current server supports Minecraft versions: 1.21.93 - 1.21.94<br>当前服务器所支持的Minecraft版本：1.21.93 - 1.21.94</p>
-</div>
-<!--上述为服务器介绍，文本居中-->
-
-<div style="text-align: center;">
-    <a href="https://minecraftpocket-servers.com/server/131141/"><img src="https://minecraftpocket-servers.com/server/131141/banners/banner-4.png"></a>
-</div>
-<!--服务器在线预览-->
-
-<style type="text/css">
-	body{
-		background: url("https://free.picui.cn/free/2025/06/08/684557d41efcd.jpg") no-repeat center center fixed;
-                /*兼容浏览器版本*/
-                -webkit-background-size: cover;
-                -o-background-size: cover;                
-                background-size: cover;
-	}
-</style>
-<!--网站背景-->
-
-<div style="text-align: center;">
-    <p>Our WeChat sponsorship code (only available to users in mainland China)<br>我们的微信赞助码（仅限中国大陆用户使用）</p>
-
-    <p><img src="https://free.picui.cn/free/2025/06/15/684ecd191fa99.jpg" alt="sponsorship code" width="400" height="400"></p>
-</div>
-<!--微信赞助码-->
-
-<div style="text-align: center;">
-    <p><img src="https://free.picui.cn/free/2025/06/16/684fc195b3237.jpg" alt="xbox iocn" width="30" height="30">
-       <img src="https://free.picui.cn/free/2025/06/16/684fc26d41638.jpg" alt="Playstation icon" width="30" height="30">
-       <img src="https://free.picui.cn/free/2025/06/16/684fc2f01a509.jpg" alt="Nintendo Switch" width="30" height="30">
-    </p>
-
-    <p>How do Console players join our server?<br>主机玩家如何加入我们的服务器？</p>
-
-    <p>In order to join Fatal_Block via console (Xbox or Playstation) please download the Bedrock Connect app for <a href="https://play.google.com/store/apps/details?id=io.bedrockhub.connector.bedrockhub_connector&hl=en_US">Android</a> or <a href="https://apps.apple.com/us/app/bedrockconnect/id6443529739">iOS</a> on a mobile device connected to the same network.
-        <br>为了通过主机（Xbox或Playstation）来加入Fatal_Block，请在连接到同一网络的移动设备上下载适用于<a href="https://play.google.com/store/apps/details?id=io.bedrockhub.connector.bedrockhub_connector&hl=en_US">Android</a>或<a href="https://apps.apple.com/us/app/bedrockconnect/id6443529739">iOS</a>的Bedrock Connect应用程序。
-    </p>
-
-    <p>1.Download app on your mobile device.
-        <br>2.Connect to same WiFi network as your console.
-        <br>3.Press “start” on Fatal_Block.
-        <br>4.On your console, go to the Friends tab in Minecraft.
-        <br>5.Join the server!
-        <br>1.在您的移动设备上下载这个应用程序。
-        <br>2.连接到与您的主机相同的WiFi网络。
-        <br>3.点击Fatal_Block上的“Start”。
-        <br>4.在您的主机上，转到Minecraft中的“好友”选项卡。
-        <br>5.加入服务器！
-    </p>    
-</div>
-<!--主机玩家加入服务器的教程-->
-
-<script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
-    new Crate({
-        server: '1144933944559677621', // Fatal_Block SMP
-        channel: '1144933945029431339' // #💬english-chat
-    })
-</script>
-<!--网站内Discord聊天桥-->
-
-</html>    
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Fatal_Block!</h1>
+            <h1>欢迎来到Fatal_Block！</h1>
+            <h3>Please vote for our server on <a href="https://minecraftpocket-servers.com/server/131141/">minecraftpocket-servers.com</a>, it's completely free!</h3>
+            <h3>请在<a href="https://minecraftpocket-servers.com/server/131141/">minecraftpocket-servers.com</a>上给我们的服务器投票，完全免费！</h3>
+        </header>
+        
+        <div class="content-grid">
+            <div class="card">
+                <h2><i class="fas fa-info-circle"></i> 服务器信息 / Server Info</h2>
+                <p>This is a Minecraft Bedrock Edition multiplayer survival server with no rules. Created August 26th, 2023.</p>
+                <p>这是一个《Minecraft：基岩版》多人生存服务器，没有任何规则。创建于2023年8月26日。</p>
+                
+                <div class="server-details">
+                    <div class="server-detail">
+                        <i class="fas fa-tag"></i>
+                        <div>
+                            <strong>Server name: </strong> Fatal_Block<br>
+                            <strong>服务器名称：</strong> Fatal_Block
+                        </div>
+                    </div>
+                    <div class="server-detail">
+                        <i class="fas fa-server"></i>
+                        <div>
+                            <strong>Server address: </strong> play.fatalblock.online<br>
+                            <strong>服务器地址：</strong> play.fatalblock.online
+                        </div>
+                    </div>
+                    <div class="server-detail">
+                        <i class="fas fa-plug"></i>
+                        <div>
+                            <strong>Server port: </strong> 31033<br>
+                            <strong>服务器端口：</strong> 31033
+                        </div>
+                    </div>
+                    <div class="server-detail">
+                        <i class="fas fa-gamepad"></i>
+                        <div>
+                            <strong>Supported versions: </strong> 1.21.93 - 1.21.94<br>
+                            <strong>支持版本：</strong> 1.21.93 - 1.21.94
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-users"></i> 社区 / Community</h2>
+                
+                <div class="social-links">
+                    <!-- 百度贴吧链接 - 使用与其他社交链接相同的样式 -->
+                    <a href="https://tieba.baidu.com/f?kw=fatal_block" class="social-link">
+                        <div class="icon-container">
+                            <img src="https://free.picui.cn/free/2025/06/29/6860a6242f88f.jpg" alt="Baidu Tieba">
+                        </div>
+                        <div>
+                            <strong>Server Tieba</strong><br>
+                            <span>服务器贴吧</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://kook.vip/zXAY2n" class="social-link">
+                        <div class="icon-container">
+                            <img src="https://free.picui.cn/free/2025/06/08/68455ad5a2d2d.jpg" alt="KOOK icon">
+                        </div>
+                        <div>
+                            <strong>Our official KOOK</strong><br>
+                            <span>官方KOOK（推荐中国内地用户加入）</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://discord.gg/mXC3SEa9qp" class="social-link">
+                        <div class="icon-container">
+                            <img src="https://free.picui.cn/free/2025/06/08/68455bf218726.jpg" alt="Discord icon">
+                        </div>
+                        <div>
+                            <strong>Our official Discord</strong><br>
+                            <span>官方Discord（中国内地用户加入时需要科学上网）</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="banner-container">
+            <a href="https://minecraftpocket-servers.com/server/131141/">
+                <img src="https://minecraftpocket-servers.com/server/131141/banners/banner-4.png" alt="Server Banner">
+            </a>
+        </div>
+        
+        <div class="sponsor-section">
+            <h2><i class="fas fa-donate"></i> 赞助我们 / Support Us</h2>
+            <p>Our WeChat sponsorship code (only available to users in mainland China)<br>我们的微信赞助码（仅限中国大陆用户使用）</p>
+            <img src="https://free.picui.cn/free/2025/06/15/684ecd191fa99.jpg" alt="sponsorship code" class="sponsor-qr">
+        </div>
+        
+        <div class="console-guide">
+            <h2><i class="fas fa-tv"></i> 主机玩家指南 / Console Players Guide</h2>
+            
+            <div class="console-icons">
+                <img src="https://free.picui.cn/free/2025/06/16/684fc195b3237.jpg" class="console-icon" alt="xbox icon">
+                <img src="https://free.picui.cn/free/2025/06/16/684fc26d41638.jpg" class="console-icon" alt="Playstation icon">
+                <img src="https://free.picui.cn/free/2025/06/16/684fc2f01a509.jpg" class="console-icon" alt="Nintendo Switch">
+            </div>
+            
+            <p align="center">How do Console players join our server?<br>主机玩家如何加入我们的服务器？</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <h3>Download App</h3>
+                    <p>Download Bedrock Connect app for <a href="https://play.google.com/store/apps/details?id=io.bedrockhub.connector.bedrockhub_connector&hl=en_US">Android</a> or <a href="https://apps.apple.com/us/app/bedrockconnect/id6443529739">iOS</a><br>下载适用于<a href="https://play.google.com/store/apps/details?id=io.bedrockhub.connector.bedrockhub_connector&hl=cn_ZH">Android</a>或<a href="https://apps.apple.com/cn/app/bedrockconnect/id6443529739">iOS</a>的Bedrock Connect应用</p>
+                </div>
+                
+                <div class="step">
+                    <h3>Connect to WiFi</h3>
+                    <p>Connect to same WiFi network as your console<br>连接到与您的主机相同的WiFi网络</p>
+                </div>
+                
+                <div class="step">
+                    <h3>Start Connection</h3>
+                    <p>Press "Start" on Fatal_Block<br>点击Fatal_Block上的"Start"</p>
+                </div>
+                
+                <div class="step">
+                    <h3>Friends Tab</h3>
+                    <p>On your console, go to Friends tab in Minecraft<br>在主机上转到Minecraft中的"好友"选项卡</p>
+                </div>
+                
+                <div class="step">
+                    <h3>Join Server</h3>
+                    <p>Join the server!<br>加入服务器！</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Fatal_Block Minecraft Server © 2023-2025</p>
+            <p>Disclaimer: The Fatal_Block server is not in any way affiliated with Mojang Studios or Microsoft, and it is not endorsed by or supported in any way by Mojang Studios or Microsoft.</p>
+        </div>
+    </div>
+    
+    <script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
+        new Crate({
+            server: '1144933944559677621', // Fatal_Block SMP
+            channel: '1144933945029431339' // #💬english-chat
+        })
+    </script>
+    
+    <script>
+        // 简单的语言切换功能
+        document.querySelector('.language-toggle').addEventListener('click', function() {
+            const enElements = document.querySelectorAll('h1:first-child, h3:first-child, p:not(:lang(zh)), .server-detail > div > strong:first-child, .social-link > div > strong');
+            const zhElements = document.querySelectorAll('h1:last-child, h3:last-child, p:lang(zh), .server-detail > div > strong:last-child, .social-link > div > span');
+            
+            enElements.forEach(el => el.style.display = el.style.display === 'none' ? '' : 'none');
+            zhElements.forEach(el => el.style.display = el.style.display === 'none' ? '' : 'none');
+            
+            this.textContent = this.textContent === 'EN/中文' ? '显示全部/Show All' : 'EN/中文';
+        });
+    </script>
+</body>
+</html>
