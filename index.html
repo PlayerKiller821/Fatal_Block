@@ -483,16 +483,6 @@
         
         <!-- 服务器状态展示区：iframe 完全自适应宽度 + 响应式高度（基于视口） -->
         <div class="banner-container">
-            <iframe 
-                id="mc-status-play-simpfun-cn-31305" 
-                class="responsive-motd"
-                frameborder="0" 
-                width="100%" 
-                style="display: block; border-radius: 12px; background: transparent; border: none;" 
-                scrolling="auto" 
-                title="Fatal_Block Minecraft Server Status"
-                src="https://motd.minebbs.com/iframe?ip=play.simpfun.cn&port=31305&stype=auto&dark=true&theme=dark">
-            </iframe>
         </div>
         
         <div class="sponsor-section">
@@ -553,34 +543,6 @@
             server: '1144933944559677621', // Fatal_Block SMP
             channel: '1144933945029431339' // #💬english-chat
         })
-    </script>
-    
-    <script>
-        // 附加功能: 当页面完全加载后，确保iframe在不同设备resize时无需额外动作 (已经通过CSS vh自适应)
-        // 仅仅为了保证平滑体验，动态监控窗口方向变化时重新触发一次轻微重绘（保证某些浏览器兼容性）
-        (function() {
-            const iframeElem = document.getElementById('mc-status-play-simpfun-cn-31305');
-            if (iframeElem) {
-                // 监听窗口大小变化以刷新iframe布局（部分移动端旋转需要）
-                let resizeTimer;
-                window.addEventListener('resize', function() {
-                    if (resizeTimer) clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(() => {
-                        // 极小的样式重设，确保高度重新计算
-                        iframeElem.style.willChange = 'height';
-                        setTimeout(() => {
-                            iframeElem.style.willChange = 'auto';
-                        }, 100);
-                    }, 150);
-                });
-                // 若iframe加载出错时不影响页面美观（控制台不报错）
-                iframeElem.addEventListener('error', function() {
-                    this.style.minHeight = '300px';
-                    this.style.background = 'rgba(0,0,0,0.6)';
-                    this.style.border = '1px solid #555';
-                });
-            }
-        })();
     </script>
 </body>
 </html>
