@@ -2,8 +2,8 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fatal_Block</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Fatal_Block · 基岩版生存服务器</title>
     <link rel="icon" href="https://free.picui.cn/free/2025/08/06/68935d8290745.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -61,7 +61,7 @@
             position: relative;
             overflow: hidden;
         }
-        <!--网站头版标题-->
+        
         header::before {
             content: '';
             position: absolute;
@@ -220,18 +220,36 @@
         .banner-container {
             text-align: center;
             margin: 30px 0;
+            width: 100%;
         }
         
-        .banner-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
+        /* iframe 自适应核心样式：宽度100%，高度基于视口 + 最小/最大友好限制 */
+        .responsive-motd {
+            width: 100%;
+            height: 65vh;
+            min-height: 320px;
+            max-height: 700px;
+            border-radius: 12px;
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(2px);
             box-shadow: var(--shadow);
-            transition: all 0.3 ease;
+            transition: all 0.2s ease;
+            border: none;
         }
         
-        .banner-container img:hover {
-            transform: scale(1.02);
+        /* 针对平板和手机略微调整高度比例 */
+        @media (max-width: 768px) {
+            .responsive-motd {
+                height: 55vh;
+                min-height: 280px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .responsive-motd {
+                height: 50vh;
+                min-height: 250px;
+            }
         }
         
         .sponsor-section {
@@ -344,25 +362,6 @@
             margin: 5px 0;
         }
         
-        .language-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgb(255, 255, 255);
-            border: none;
-            border-radius: 20px;
-            padding: 8px 15px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-            transition: all 0.3 ease;
-        }
-        
-        .language-toggle:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2.2rem;
@@ -403,7 +402,7 @@
             <h1>Welcome to Fatal_Block!</h1>
             <h1>欢迎来到Fatal_Block！</h1>
             <h2>因缺乏维护服务器的资金，我们已将服务器存档迁移至<a href="https://simpfun.cn/">简幻欢</a>！</h2>
-            <h2>Due to a lack of funds for server maintenance, we have migrated our server levels to <a href="https://simpfun.cn/">Simpfun!</a>
+            <h2>Due to a lack of funds for server maintenance, we have migrated our server levels to <a href="https://simpfun.cn/">Simpfun!</a></h2>
         </header>
         
         <div class="content-grid">
@@ -437,8 +436,8 @@
                     <div class="server-detail">
                         <i class="fas fa-gamepad"></i>
                         <div>
-                            <strong>Supported versions: </strong> 26.10 - 26.13<br>
-                            <strong>支持的版本：</strong> 26,10 - 26.13
+                            <strong>Supported versions: </strong> 1.20.50 - 1.21.70+<br>
+                            <strong>支持的版本：</strong> 1.20.50 - 1.21.70+
                         </div>
                     </div>
                 </div>
@@ -448,10 +447,10 @@
                 <h2><i class="fas fa-users"></i> 社区 / Community</h2>
                 
                 <div class="social-links">
-                    <!-- 百度贴吧链接 - 使用与其他社交链接相同的样式 -->
+                    <!-- 百度贴吧链接 -->
                     <a href="https://tieba.baidu.com/f?kw=fatal_block" class="social-link">
                         <div class="icon-container">
-                            <img src="images/百度贴吧.png" alt="Baidu Tieba">
+                            <img src="images/百度贴吧.png" alt="Baidu Tieba" onerror="this.src='https://via.placeholder.com/40?text=贴吧'">
                         </div>
                         <div>
                             <strong>Server Tieba</strong><br>
@@ -461,7 +460,7 @@
                     
                     <a href="https://kook.vip/zXAY2n" class="social-link">
                         <div class="icon-container">
-                            <img src="images/KOOK.jpg" alt="KOOK icon">
+                            <img src="images/KOOK.jpg" alt="KOOK icon" onerror="this.src='https://via.placeholder.com/40?text=KOOK'">
                         </div>
                         <div>
                             <strong>Our official KOOK</strong><br>
@@ -471,7 +470,7 @@
                     
                     <a href="https://discord.gg/mXC3SEa9qp" class="social-link">
                         <div class="icon-container">
-                            <img src="images/Discord.jpg" alt="Discord icon">
+                            <img src="images/Discord.jpg" alt="Discord icon" onerror="this.src='https://via.placeholder.com/40?text=DC'">
                         </div>
                         <div>
                             <strong>Our official Discord</strong><br>
@@ -482,31 +481,33 @@
             </div>
         </div>
         
+        <!-- 服务器状态展示区：iframe 完全自适应宽度 + 响应式高度（基于视口） -->
         <div class="banner-container">
             <iframe 
                 id="mc-status-play-simpfun-cn-31305" 
+                class="responsive-motd"
                 frameborder="0" 
-                height="400" 
                 width="100%" 
-                style="max-width:100%; border-radius: 8px; background: transparent;" 
-                scrolling="no" 
-                src="https://motd.minebbs.com/iframe?ip=play.simpfun.cn&port=31305&stype=auto&dark=true">
+                style="display: block; border-radius: 12px; background: transparent; border: none;" 
+                scrolling="auto" 
+                title="Fatal_Block Minecraft Server Status"
+                src="https://motd.minebbs.com/iframe?ip=play.simpfun.cn&port=31305&stype=auto&dark=true&theme=dark">
             </iframe>
         </div>
         
         <div class="sponsor-section">
             <h2><i class="fas fa-donate"></i> 赞助我们 / Support Us</h2>
             <p>Our WeChat sponsorship code (only available to users in mainland China)<br>我们的微信赞助码（仅限中国大陆用户使用）</p>
-            <img src="images/微信赞助码.jpg" alt="sponsorship code" class="sponsor-qr">
+            <img src="images/微信赞助码.jpg" alt="sponsorship code" class="sponsor-qr" onerror="this.src='https://free.picui.cn/free/2025/06/08/684557d41efcd.jpg';this.alt='暂缺赞助码图片'">
         </div>
         
         <div class="console-guide">
             <h2><i class="fas fa-tv"></i> 主机玩家指南 / Console Players Guide</h2>
             
             <div class="console-icons">
-                <img src="images/xbox.jpg" class="console-icon" alt="xbox icon">
-                <img src="images/PlayStation.jpg" class="console-icon" alt="Playstation icon">
-                <img src="images/Nintendo Switch.jpg" class="console-icon" alt="Nintendo Switch">
+                <img src="images/xbox.jpg" class="console-icon" alt="xbox icon" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2917/2917993.png'">
+                <img src="images/PlayStation.jpg" class="console-icon" alt="Playstation icon" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2917/2917996.png'">
+                <img src="images/Nintendo Switch.jpg" class="console-icon" alt="Nintendo Switch" onerror="this.src='https://cdn-icons-png.flaticon.com/512/5977/5977590.png'">
             </div>
             
             <p align="center">How do Console players join our server?<br>主机玩家如何加入我们的服务器？</p>
@@ -514,7 +515,7 @@
             <div class="steps">
                 <div class="step">
                     <h3>Download App</h3>
-                    <p>Download Bedrock Connect app for <a href="https://play.google.com/store/apps/details?id=io.bedrockhub.connector.bedrockhub_connector&hl=en_US">Android</a> or <a href="https://apps.apple.com/us/app/bedrockconnect/id6443529739">iOS</a><br>下载适用于<a href="https://play.google.com/store/apps/details?id=io.bedrockhub.connector.bedrockhub_connector&hl=cn_ZH">Android</a>或<a href="https://apps.apple.com/cn/app/bedrockconnect/id6443529739">iOS</a>的Bedrock Connect应用</p>
+                    <p>Download Bedrock Connect app for <a href="https://play.google.com/store/apps/details?id=io.bedrockhub.connector.bedrockhub_connector&hl=en_US" target="_blank" style="color:#ffd966;">Android</a> or <a href="https://apps.apple.com/us/app/bedrockconnect/id6443529739" target="_blank" style="color:#ffd966;">iOS</a><br>下载适用于<a href="https://play.google.com/store/apps/details?id=io.bedrockhub.connector.bedrockhub_connector&hl=cn_ZH" target="_blank" style="color:#ffd966;">Android</a>或<a href="https://apps.apple.com/cn/app/bedrockconnect/id6443529739" target="_blank" style="color:#ffd966;">iOS</a>的Bedrock Connect应用</p>
                 </div>
                 
                 <div class="step">
@@ -546,6 +547,7 @@
         </div>
     </div>
     
+    <!-- 使用Widgetbot 提供实时Discord聊天浮窗 (可选) 对原有功能无干扰 -->
     <script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
         new Crate({
             server: '1144933944559677621', // Fatal_Block SMP
@@ -554,16 +556,31 @@
     </script>
     
     <script>
-        // 简单的语言切换功能
-        document.querySelector('.language-toggle').addEventListener('click', function() {
-            const enElements = document.querySelectorAll('h1:first-child, h3:first-child, p:not(:lang(zh)), .server-detail > div > strong:first-child, .social-link > div > strong');
-            const zhElements = document.querySelectorAll('h1:last-child, h3:last-child, p:lang(zh), .server-detail > div > strong:last-child, .social-link > div > span');
-            
-            enElements.forEach(el => el.style.display = el.style.display === 'none' ? '' : 'none');
-            zhElements.forEach(el => el.style.display = el.style.display === 'none' ? '' : 'none');
-            
-            this.textContent = this.textContent === 'EN/中文' ? '显示全部/Show All' : 'EN/中文';
-        });
+        // 附加功能: 当页面完全加载后，确保iframe在不同设备resize时无需额外动作 (已经通过CSS vh自适应)
+        // 仅仅为了保证平滑体验，动态监控窗口方向变化时重新触发一次轻微重绘（保证某些浏览器兼容性）
+        (function() {
+            const iframeElem = document.getElementById('mc-status-play-simpfun-cn-31305');
+            if (iframeElem) {
+                // 监听窗口大小变化以刷新iframe布局（部分移动端旋转需要）
+                let resizeTimer;
+                window.addEventListener('resize', function() {
+                    if (resizeTimer) clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        // 极小的样式重设，确保高度重新计算
+                        iframeElem.style.willChange = 'height';
+                        setTimeout(() => {
+                            iframeElem.style.willChange = 'auto';
+                        }, 100);
+                    }, 150);
+                });
+                // 若iframe加载出错时不影响页面美观（控制台不报错）
+                iframeElem.addEventListener('error', function() {
+                    this.style.minHeight = '300px';
+                    this.style.background = 'rgba(0,0,0,0.6)';
+                    this.style.border = '1px solid #555';
+                });
+            }
+        })();
     </script>
 </body>
 </html>
