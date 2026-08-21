@@ -394,6 +394,15 @@
                 height: 50px;
             }
         }
+
+        /* 于2026/08/21新增：将所有蓝色链接改为绿色，排除社区链接 */
+        a:not(.social-link),
+        a:not(.social-link):link,
+        a:not(.social-link):visited,
+        a:not(.social-link):hover,
+        a:not(.social-link):active {
+            color: #00cc44 !important;
+        }
     </style>
 </head>
 <body>
@@ -401,8 +410,8 @@
         <header>
             <h1>Welcome to <font color="#FF00FF">Fatal_Block</font>!</h1>
             <h1>欢迎来到<font color="#FF00FF">Fatal_Block</font>！</h1>
-            <h2>因缺乏维护服务器的资金，我们已将服务器存档迁移至<a href="https://simpfun.cn/">简幻欢</a>！</h2>
-            <h2>Due to a lack of funds for server maintenance, we have migrated our server levels to <a href="https://simpfun.cn/">Simpfun</a>!</h2>
+            <h2>因缺乏维护服务器的资金，我们已将服务器存档迁移至<a href="https://simpfun.cn/" style="text-decoration: none;">简幻欢</a>！</h2>
+            <h2>Due to a lack of funds for server maintenance, we have migrated our server levels to <a href="https://simpfun.cn/" style="text-decoration: none;">Simpfun</a>!</h2>
         </header>
         
         <div class="content-grid">
@@ -496,6 +505,21 @@
             <iframe src="https://www.minecraftplot.com/server-status-embed/embed.php?ip=play.simpfun.cn%3A31305&type=bedrock&style=large&layout=card&theme=dark&link=minecraft%3A%2F%2F%3FaddExternalServer%3DFatal_Block%7Cplay.simpfun.cn%3A31305" width="100%" height="210" frameborder="0" scrolling="no" style="max-width: 450px; border-radius: 12px; overflow: hidden;"></iframe>
         </div>
         
+        <!-- 服务器规则 / Server Rules -->
+        <div class="rule-section" style="background: rgba(20, 20, 30, 0.88); backdrop-filter: blur(4px); border-radius: 12px; padding: 30px 35px; margin-bottom: 30px; box-shadow: var(--shadow); border-left: 4px solid #ff66ff;">
+            <h2 style="color: #ffffff; font-size: 1.8rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 12px;">
+                <i class="fas fa-gavel" style="color: #ff66ff;"></i> 规则 / Rules
+            </h2>
+            <pre style="font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; font-size: 0.95rem; line-height: 1.8; color: #e8e8e8; white-space: pre-wrap; word-wrap: break-word; margin: 0; background: transparent; border: none; padding: 0; tab-size: 2;">
+            <br>服务器运行由Mojang提供的生存游戏模式，这是一个开放式的沙盒世界。这里没有很多规则，因此造就了一个混乱而严酷的世界。
+            <br>然而，这绝不意味着鼓励或煽动玩家在游戏之外进行恶意或骚扰行为。
+            <br>所有玩家必须遵守你创建Minecraft账号时同意的<a href="https://www.minecraft.net/zh-hans/usage-guidelines" style="text-decoration: none;">Minecraft使用指南</a>、<a href="https://www.minecraft.net/zh-hans/community-standards" style="text-decoration: none;">Minecraft社区标准</a>和<a href="https://www.xbox.com/en-US/legal/community-standards" style="text-decoration: none;">Xbox社区标准</a>。
+            <br>尽管允许不经过对方同意进行自由PvP，但服务器管理团队不赞成、不支持玩家无故破坏他人的建筑成果、基地设施等。若遭破坏，被破坏者有权向破坏者发起反击。管理团队不会介入玩家间的纷争。
+            <br>请勿试图通过滥用任何漏洞、错误或有缺陷的游戏机制来破坏服务器的稳定或造成卡顿，从而损害服务器为每位玩家提供公平、平等游戏环境的努力。
+            <br>聊天和社区准则：<br>请勿在聊天中刷屏重复消息或发送垃圾信息（例如：禁止宣传第三方商店）。<br>请勿在聊天中自动发送任何消息。<br>请勿在游戏内或外部社区中参与任何针对个人或现实生活的骚扰、威胁或欺凌行为。请记住，这只是一个方块游戏。<br>请勿建造、制作或发布任何与有害思想、仇恨象征或仇恨言论相关的内容。
+            </pre>
+        </div>
+        
         <div class="sponsor-section">
             <h2><i class="fas fa-donate"></i> 赞助我们 / Support Us</h2>
             <p>Our WeChat sponsorship code (only available to users in mainland China)<br>我们的微信赞助码（仅限中国大陆用户使用）</p>
@@ -542,18 +566,13 @@
         </div>
         
         <div class="footer">
-            <p>Fatal_Block Minecraft Server © 2023-2026</p>
-            <p>The Fatal_Block server is not in any way affiliated with Mojang Studios or Microsoft, and it is not endorsed by or supported in any way by Mojang Studios or Microsoft.
-                <br>Fatal_Block服务器与Mojang Studios或微软没有任何关联，也没有得到Mojang Studios或微软以任何方式认可或支持。</p>
+            <pre style="font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; font-size: 0.95rem; line-height: 1.8; color: #e8e8e8; white-space: pre-wrap; word-wrap: break-word; margin: 0; background: transparent; border: none; padding: 0; tab-size: 2;">
+            <p>Fatal_Block Minecraft Server © 2023-2026
+            <br>The Fatal_Block server is not in any way affiliated with Mojang Studios or Microsoft, and it is not endorsed by or supported in any way by Mojang Studios or Microsoft.<br>Fatal_Block服务器与Mojang Studios或微软没有任何关联，也没有得到Mojang Studios或微软以任何方式认可或支持。
+            <br>Contact Email: playerkiller826@outlook.com<br>联系邮箱：playerkiller826@outlook.com</p>
+            </pre>
         </div>
     </div>
     
-    <!-- 使用Widgetbot 提供实时Discord聊天浮窗 (可选) 对原有功能无干扰 -->
-    <script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
-        new Crate({
-            server: '1144933944559677621', // Fatal_Block SMP
-            channel: '1144933945029431339' // #💬english-chat
-        })
-    </script>
 </body>
 </html>
